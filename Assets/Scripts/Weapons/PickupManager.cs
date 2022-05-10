@@ -19,6 +19,8 @@ public class PickupManager : MonoBehaviour
     // this variable represent your hand which you set as the parent of your currentWeapon
     public Transform hand;
 
+    private Camera cam;
+
     // Insert a gameobject which you drop inside your player gameobject and position it where you want to drop items from
     // to avoid dropping items inside your player
     public Transform dropPoint;
@@ -26,16 +28,16 @@ public class PickupManager : MonoBehaviour
 
     void Start()
     {
-        GameObject[] gameObjects;
-        gameObjects = GameObject.FindGameObjectsWithTag("Weapons");
 
-        if(gameObjects.Length > 0)
+        cam = GameObject.Find("MainCamera").GetComponent<Camera>();
+        cameraTransform = cam.transform;
+
+        foreach (Transform child in hand)
         {
-            foreach(GameObject obj in gameObjects)
-            {
-                Weapon.Add(obj);
-            }
+            Weapon.Add(child.gameObject);
+            child.GetComponent<GunSystem>().enb = true;
         }
+
         SelectWeapon(0);
     }
 
@@ -60,6 +62,7 @@ public class PickupManager : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
+
             if (hit.transform.CompareTag(weaponTag) && Input.GetKeyDown(pickupKey) && Weapon.Count < maxWeapons)
             {
 
@@ -73,7 +76,22 @@ public class PickupManager : MonoBehaviour
                 // but for this demonstration where we just want to show a weapon
                 // in our hand at some point we do it now.
                 hit.transform.parent = hand;
-                hit.transform.position = Vector3.zero;
+                hit.transform.localPosition = new Vector3(0.337f, -0.36f, 0.63f);
+                
+
+                if(hit.collider.gameObject.name == "Shotgun")
+                {
+                    hit.transform.localRotation = Quaternion.Euler(0, 270.0f, 0);
+                }
+                else
+                {
+                    hit.transform.localRotation = new Quaternion(0, 0, 0, 0);
+                }
+
+                foreach (Transform child in hand)
+                {
+                    child.GetComponent<GunSystem>().enb = true;
+                }
             }
         }
 
@@ -90,44 +108,69 @@ public class PickupManager : MonoBehaviour
 
             // Remove it from our 'inventory'            
             var weaponInstanceId = currentWeapon.GetInstanceID();
+
+            
             for (int i = 0; i < Weapon.Count; i++)
             {
+                
                 if ( Weapon[i].GetInstanceID() == weaponInstanceId)
                 {
+                    Weapon[i].GetComponent<GunSystem>().enb = false;
+                    
                     Weapon.RemoveAt(i);
+
+                    Weapon.Clear();
+
                     break;
                 }
             }
 
             // Remove it from our 'hand'
             currentWeapon = null;
+            Start();
+
+
         }
     }
 
     void SelectWeapon(int index)
     {
 
-        Debug.Log(index);
+       // Debug.Log("Weapon count: " + Weapon.Count);
         // Ensure we have a weapon in the wanted 'slot'
-        if (Weapon.Count > index && Weapon[index] != null)
+        if(Weapon.Count ==2)
         {
-
-            // Check if we already is carrying a weapon
-            if (currentWeapon != null)
+            if (Weapon.Count > index && Weapon[index] != null)
             {
-                // hide the weapon                
-                currentWeapon.gameObject.SetActive(false);
-                if(index ==0)
-                {
-                    currentWeapon = Weapon[1];
-                }
-                else if(index ==1)
-                {
-                    currentWeapon = Weapon[0];
-                }
-            }
 
-            currentWeapon.SetActive(true);
+                // Check if we already is carrying a weapon
+                if (currentWeapon != null)
+                {
+                    // hide the weapon                
+                    currentWeapon.gameObject.SetActive(false);
+                    if (index == 0)
+                    {
+                        currentWeapon = Weapon[1];
+                    }
+                    else if (index == 1)
+                    {
+                        currentWeapon = Weapon[0];
+                    }
+                }
+
+                currentWeapon.gameObject.SetActive(true);
+            }
         }
+        else
+        {
+            if (Weapon.Count > index && Weapon[index] != null)
+            {
+                currentWeapon = Weapon[0];
+                currentWeapon.gameObject.SetActive(true);
+            }
+        }
+        
     }
+
+
 }
