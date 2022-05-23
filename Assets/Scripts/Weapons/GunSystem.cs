@@ -9,7 +9,8 @@ public class GunSystem : MonoBehaviour
     public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
-    int bulletsLeft, bulletsShot;
+    public int bulletsLeft, bulletsShot;
+    public int allBullets;
 
 
     public GameObject shootPrefab;
@@ -50,12 +51,16 @@ public class GunSystem : MonoBehaviour
         readyToShoot = true;
         
     }
-    private void Update()
+    public void Update()
     {
         MyInput();
 
         //SetText
-        text.SetText(bulletsLeft + " / " + magazineSize);
+        if(enb)
+        {
+            text.SetText(bulletsLeft + " / " + allBullets);
+        }
+        
     }
     private void MyInput()
     {
@@ -64,7 +69,7 @@ public class GunSystem : MonoBehaviour
             if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
             else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
+            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading && allBullets != 0) Reload();
 
             //Shoot
             if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
@@ -88,19 +93,25 @@ public class GunSystem : MonoBehaviour
 
         //RayCast
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range))
-        if(Physics.Raycast(ray, out hit, range))
+        if (Physics.Raycast(fpsCam.transform.position, direction, out hit, range))
         {
             GameObject laser = GameObject.Instantiate(shootPrefab, attackPoint.position, attackPoint.rotation) as GameObject;
             laser.GetComponent<ShotBehavior>().setTarget(hit.point);
             GameObject.Destroy(laser, 2f);
-            // Debug.Log(rayHit.collider.name);
-            // if (rayHit.collider.CompareTag("Enemy"))
-            //  rayHit.collider.GetComponent<ShootingAi>().TakeDamage(damage);
+
+             if (hit.collider.CompareTag("Enemy"))
+             {
+                if (hit.collider.name == "PA_WarriorControl")
+                {
+                    hit.collider.GetComponentInParent<Drone>().TakeDamage(damage);
+                }
+                else if(hit.collider.GetComponent<Crab>() != null)
+                {
+                    hit.collider.GetComponent<Crab>().TakeDamage(damage);
+                }
+             }
         }
 
-        //ShakeCamera
-      //  camShake.Shake(camShakeDuration, camShakeMagnitude);
 
         MuzzleParticle.Play();
         audioSource.PlayOneShot(fire, 1);
@@ -126,8 +137,19 @@ public class GunSystem : MonoBehaviour
     }
     private void ReloadFinished()
     {
-        bulletsLeft = magazineSize;
-        reloading = false;
+        if(allBullets < magazineSize && (allBullets+bulletsLeft)<=magazineSize)
+        {
+            bulletsLeft += bulletsLeft + allBullets;
+            allBullets = 0;
+            reloading = false;
+        }
+        else
+        {
+            allBullets -= magazineSize - bulletsLeft;
+            bulletsLeft = magazineSize;
+            reloading = false;
+        }
+
     }
 
 

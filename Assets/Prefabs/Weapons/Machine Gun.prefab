@@ -100,13 +100,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   timeBetweenShooting: 0.05
-  spread: 0.1
+  spread: 0.02
   range: 30
   reloadTime: 3
   timeBetweenShots: 0.02
   magazineSize: 30
   bulletsPerTap: 1
   allowButtonHold: 0
+  bulletsLeft: 0
+  bulletsShot: 0
+  allBullets: 200
   shootPrefab: {fileID: 136330, guid: 9a0c3383523899643a8d0661cfaca4e4, type: 3}
   enb: 0
   MuzzleParticle: {fileID: 4321633119423131826}

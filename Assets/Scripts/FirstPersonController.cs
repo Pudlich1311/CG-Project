@@ -1,6 +1,7 @@
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using TMPro;
 #endif
 
 namespace StarterAssets
@@ -54,6 +55,8 @@ namespace StarterAssets
 		// cinemachine
 		private float _cinemachineTargetPitch;
 
+		public int health;
+
 		// player
 		private float _speed;
 		private float _rotationVelocity;
@@ -69,6 +72,8 @@ namespace StarterAssets
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
 
+		private TextMeshProUGUI text;
+
 		private const float _threshold = 0.01f;
 		
 		private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
@@ -79,6 +84,7 @@ namespace StarterAssets
 			if (_mainCamera == null)
 			{
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+				text = GameObject.Find("Health").GetComponent<TextMeshProUGUI>();
 			}
 		}
 
@@ -98,6 +104,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			text.SetText("Health:\n" + health);
 		}
 
 		private void LateUpdate()
@@ -247,5 +254,15 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
+
+
+		public void damage(int dmg)
+        {
+			health -= dmg;
+			if(health <= 0)
+            {
+				Debug.Log("Dead");
+            }
+        }
 	}
 }

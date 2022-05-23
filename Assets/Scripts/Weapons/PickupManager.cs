@@ -39,6 +39,7 @@ public class PickupManager : MonoBehaviour
         }
 
         SelectWeapon(0);
+        
     }
 
     void Update()
@@ -150,11 +151,11 @@ public class PickupManager : MonoBehaviour
                     currentWeapon.gameObject.SetActive(false);
                     if (index == 0)
                     {
-                        currentWeapon = Weapon[1];
+                        currentWeapon = Weapon[0];
                     }
                     else if (index == 1)
                     {
-                        currentWeapon = Weapon[0];
+                        currentWeapon = Weapon[1];
                     }
                 }
 
@@ -167,9 +168,14 @@ public class PickupManager : MonoBehaviour
             {
                 currentWeapon = Weapon[0];
                 currentWeapon.gameObject.SetActive(true);
+
+                
             }
         }
-        
+
+        Weapon[index].GetComponent<GunSystem>().text.SetText(Weapon[index].GetComponent<GunSystem>().bulletsLeft + " / " + Weapon[index].GetComponent<GunSystem>().magazineSize);
+
+
     }
 
 

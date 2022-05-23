@@ -8,15 +8,16 @@ TagManager:
   - Weapons
   - UIText
   - Camera
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Ground
+  - Sky
   - 
   - 
   - 
