@@ -56,14 +56,14 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\NavMeshComponents-master\Assets\Tests\Editor\PrefabStageAutoSavingUtil.cs" />
-    <Compile Include="Assets\NavMeshComponents-master\Assets\Tests\Editor\NavMeshModifierVolumeInPrefabTests.cs" />
-    <Compile Include="Assets\NavMeshComponents-master\Assets\Tests\Editor\NavMeshSurfaceInPrefabTests.cs" />
-    <Compile Include="Assets\NavMeshComponents-master\Assets\Tests\Editor\PrefabSavingUtil.cs" />
-    <Compile Include="Assets\NavMeshComponents-master\Assets\Tests\Editor\NavMeshSurfaceInPrefabVariantTests.cs" />
+    <Compile Include="Assets\NavMesh\Assets\Tests\Editor\PrefabStageAutoSavingUtil.cs" />
+    <Compile Include="Assets\NavMesh\Assets\Tests\Editor\NavMeshModifierVolumeInPrefabTests.cs" />
+    <Compile Include="Assets\NavMesh\Assets\Tests\Editor\NavMeshSurfaceInPrefabTests.cs" />
+    <Compile Include="Assets\NavMesh\Assets\Tests\Editor\PrefabSavingUtil.cs" />
+    <Compile Include="Assets\NavMesh\Assets\Tests\Editor\NavMeshSurfaceInPrefabVariantTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\NavMeshComponents-master\Assets\Tests\Editor\NavMeshComponentsTestsEditmode.asmdef" />
+    <None Include="Assets\NavMesh\Assets\Tests\Editor\NavMeshComponentsTestsEditmode.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

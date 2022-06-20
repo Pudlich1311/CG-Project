@@ -56,14 +56,14 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\NavMeshComponents-master\Assets\Tests\NavMeshSurfaceTests.cs" />
-    <Compile Include="Assets\NavMeshComponents-master\Assets\Tests\NavMeshSurfaceModifierVolumeTests.cs" />
-    <Compile Include="Assets\NavMeshComponents-master\Assets\Tests\NavMeshSurfaceModifierTests.cs" />
-    <Compile Include="Assets\NavMeshComponents-master\Assets\Tests\NavMeshSurfaceLinkTests.cs" />
-    <Compile Include="Assets\NavMeshComponents-master\Assets\Tests\NavMeshSurfaceAgentTests.cs" />
+    <Compile Include="Assets\NavMesh\Assets\Tests\NavMeshSurfaceTests.cs" />
+    <Compile Include="Assets\NavMesh\Assets\Tests\NavMeshSurfaceModifierVolumeTests.cs" />
+    <Compile Include="Assets\NavMesh\Assets\Tests\NavMeshSurfaceModifierTests.cs" />
+    <Compile Include="Assets\NavMesh\Assets\Tests\NavMeshSurfaceLinkTests.cs" />
+    <Compile Include="Assets\NavMesh\Assets\Tests\NavMeshSurfaceAgentTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\NavMeshComponents-master\Assets\Tests\NavMeshComponentsTestsPlaymode.asmdef" />
+    <None Include="Assets\NavMesh\Assets\Tests\NavMeshComponentsTestsPlaymode.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
