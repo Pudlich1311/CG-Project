@@ -9,6 +9,7 @@ TagManager:
   - UIText
   - Camera
   - Enemy
+  - Floor
   layers:
   - Default
   - TransparentFX
