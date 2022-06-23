@@ -149,10 +149,12 @@ public class Drone : MonoBehaviour
     }
     private void DestroyEnemy()
     {
+        GameObject.Find("LevelGenerator").GetComponent<Generation>().enemies -= 1;
         alreadyAttacked = true;
         curr = CurrentState.Death;
         AnimationCkeck();
         Destroy(gameObject);
+
     }
 
 

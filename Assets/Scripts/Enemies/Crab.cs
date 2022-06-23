@@ -17,6 +17,7 @@ public class Crab : MonoBehaviour
 
     public int dmg;
 
+
     private bool damaged;
 
     public Animator an;
@@ -143,6 +144,7 @@ public class Crab : MonoBehaviour
     }
     private void DestroyEnemy()
     {
+        GameObject.Find("LevelGenerator").GetComponent<Generation>().enemies -= 1;
         curr = CurrentState.Death;
         AnimationCkeck();
         Destroy(gameObject);

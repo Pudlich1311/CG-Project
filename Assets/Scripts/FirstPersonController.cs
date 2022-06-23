@@ -2,6 +2,7 @@ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 #endif
 
 namespace StarterAssets
@@ -261,8 +262,8 @@ namespace StarterAssets
 			health -= dmg;
 			if(health <= 0)
             {
-				Debug.Log("Dead");
-            }
+				SceneManager.LoadScene("Lose");
+			}
         }
 	}
 }

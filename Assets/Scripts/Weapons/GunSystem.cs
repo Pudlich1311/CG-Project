@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GunSystem : MonoBehaviour
 {
@@ -37,11 +38,17 @@ public class GunSystem : MonoBehaviour
 
     public TextMeshProUGUI text;
 
+    public TextMeshProUGUI ene;
+
+    private int count;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         fpsCam = GameObject.Find("MainCamera").GetComponent<Camera>();
         text = GameObject.Find("UI").GetComponent<TextMeshProUGUI>();
+        ene = GameObject.Find("Enemies").GetComponent<TextMeshProUGUI>();
+        
     }
 
 
@@ -60,7 +67,14 @@ public class GunSystem : MonoBehaviour
         {
             text.SetText(bulletsLeft + " / " + allBullets);
         }
-        
+        count = GameObject.Find("LevelGenerator").GetComponent<Generation>().enemies;
+        ene.SetText("Enemies left: " + count);
+
+        if(count ==0)
+        {
+            SceneManager.LoadScene("Win");
+        }
+
     }
     private void MyInput()
     {

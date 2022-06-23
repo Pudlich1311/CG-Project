@@ -810,12 +810,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   health: 20
-  dmg: 20
+  dmg: 10
   an: {fileID: 6397891713840607994}
   curr: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
-  timeBetweenAttacks: 0.5
+  timeBetweenAttacks: 1
   projectile: {fileID: 136330, guid: 39e79f4670378834a8214d9cce255506, type: 3}
   bulletForce: 0.5
   sightRange: 20
