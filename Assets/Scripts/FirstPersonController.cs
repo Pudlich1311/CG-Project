@@ -262,6 +262,9 @@ namespace StarterAssets
 			health -= dmg;
 			if(health <= 0)
             {
+				//Time.timeScale = 1f;
+				Cursor.visible = true;
+				Cursor.lockState = CursorLockMode.None;
 				SceneManager.LoadScene("Lose");
 			}
         }

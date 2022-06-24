@@ -654,13 +654,12 @@ MonoBehaviour:
     m_Bits: 8
   health: 200
   dmg: 30
-  enemies: 0
   an: {fileID: 1392168179695219085}
   curr: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 0.5
   timeBetweenAttacks: 5
-  sightRange: 20
+  sightRange: 35
   attackRange: 3
   playerInSightRange: 0
   playerInAttackRange: 0

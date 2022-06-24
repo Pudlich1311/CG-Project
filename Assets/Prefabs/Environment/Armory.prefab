@@ -622,7 +622,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4225745891847395860, guid: ed5da0d0f5da47b47aaeec4175f9fb8d, type: 3}
       propertyPath: m_Name
-      value: 4
+      value: Weapons
       objectReference: {fileID: 0}
     - target: {fileID: 7506543790619400907, guid: ed5da0d0f5da47b47aaeec4175f9fb8d, type: 3}
       propertyPath: m_ConnectedAnchor.x

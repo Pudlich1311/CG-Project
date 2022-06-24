@@ -14,6 +14,7 @@ public class Generation : MonoBehaviour
     public GameObject room;
     public GameObject room2;
     public GameObject room3;
+    public GameObject room4;
     public GameObject armory;
     public bool[,] vis;
     private int offset = 88;
@@ -86,7 +87,10 @@ public class Generation : MonoBehaviour
                 {
                     temp = GameObject.Instantiate(room3, new Vector3(startx, 0, startz), Quaternion.identity);
                 }
-
+                else if (level[i, j] == 4)
+                {
+                    temp = GameObject.Instantiate(room4, new Vector3(startx, 0, startz), Quaternion.identity);
+                }
 
 
                 /**
@@ -94,7 +98,7 @@ public class Generation : MonoBehaviour
                  */
 
                 //South
-                if(i==0 && j!=2)
+                if (i==0 && j!=2)
                 {
                     MeshRenderer bodyRenderer = temp.transform.Find("WallS").GetComponent<MeshRenderer>();
                     bodyRenderer.enabled = true;
@@ -240,7 +244,11 @@ public class Generation : MonoBehaviour
                 }
                 else if(level[i, j] == 3)
                 {
-                    enemies += 4;
+                    enemies += 3;
+                }
+                else if(level[i,j] == 4)
+                {
+                    enemies += 2;
                 }
 
             }
@@ -304,7 +312,7 @@ public class Generation : MonoBehaviour
 
     private int assignroom()
     {
-        return UnityEngine.Random.Range(0, 4);
+        return UnityEngine.Random.Range(0, 5);
     }
 
     // Update is called once per frame
